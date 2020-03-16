@@ -24,8 +24,9 @@ class App extends Component {
   }
 
   onDelete(itemId){
-    const items = this.state.todoItems.filter(item => item.id !== itemId);
-    this.setState({ items: items });
+    const todoItems = this.state.todoItems.filter(item => item.id !== itemId);
+    this.setState({ todoItems: todoItems
+     });
   }
 
   handleInputValue(val) {
