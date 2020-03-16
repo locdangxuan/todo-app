@@ -23,14 +23,12 @@ class App extends Component {
     this.onDelete = this.onDelete.bind(this)
   }
 
-  onDelete(itemId){
-    const todoItems = this.state.todoItems.filter(item => item.id !== itemId);
-    this.setState({ todoItems: todoItems
-     });
+  onDelete(id){
+    const todoItems = this.state.todoItems.filter(item => item.id !== id);
+    this.setState({ todoItems: todoItems });
   }
 
   handleInputValue(val) {
-    // this.setState({ newItem: val });
     this.setState({
       newItem: "",
       todoItems: [...this.state.todoItems, { id: Date.now, title: val, isComplete: false }]
@@ -96,7 +94,7 @@ class App extends Component {
               todoItems.map((item, index) => (
                 <TodoItem
                   key={index}
-                  id={index}
+                  id = {item.id}
                   item={item}
                   onClick={this.onItemClicked(item)}
                   todoItems={todoItems}
