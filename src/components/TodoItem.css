@@ -10,7 +10,9 @@
     margin-left: 150px;
     margin-right: 100px;
 }
-
+.button-item {
+    margin-left: 100px;
+}
 .TodoItem-Complete { 
     text-decoration: line-through;
     opacity: .3;

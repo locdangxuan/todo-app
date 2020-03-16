@@ -7,7 +7,7 @@ import uncheck from "../unchecked.png";
 
 class TodoItems extends Component {
     render() {
-        const { item, onClick } = this.props;
+        const { item, onClick, onDelete } = this.props;
         let url = uncheck;
         if(item.isComplete){
             url = check;
@@ -17,6 +17,11 @@ class TodoItems extends Component {
             <div onClick={onClick} className={classNames('TodoItem', {'TodoItem-Complete': item.isComplete})}>
                  <img src = {url} alt = "ckeck" onClick = {onClick} className = "check-logo"/>
                 <p>{this.props.item.title}</p>
+                
+            </div> 
+            <div className="button-item">
+        <button>Edit </button>
+            <button onClick={onDelete}>Delete </button>
             </div>
           </div>
         );
