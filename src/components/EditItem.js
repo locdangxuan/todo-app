@@ -29,21 +29,13 @@ class EditItem extends Component {
   handleOnChange(input, value) {
     this.setState({
       [input]: value
-<<<<<<< HEAD
-    })
-=======
     });
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
   }
 
   render() {
     const { modal } = this.state;
     const { title, description } = this.props;
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
     return (
       <div>
         <Button color="white" onClick={this.toggle}>
@@ -57,11 +49,7 @@ class EditItem extends Component {
               ref="title"
               type="text"
               placeholder={title}
-<<<<<<< HEAD
-              onChange={e => this.handleOnChange('title', e.target.value)}
-=======
               onChange={e => this.handleOnChange("title", e.target.value)}
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
             ></input>
           </ModalBody>
           <ModalBody>
@@ -70,11 +58,7 @@ class EditItem extends Component {
               ref="description"
               type="text"
               placeholder={description}
-<<<<<<< HEAD
-              onChange={e => this.handleOnChange('description', e.target.value)}
-=======
               onChange={e => this.handleOnChange("description", e.target.value)}
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
             ></input>
           </ModalBody>
           <ModalFooter>

@@ -19,12 +19,14 @@ class App extends Component {
         { id: 3, title: "Homework", description: "cc", isComplete: false }
       ],
       newItem: "",
-      count: 0
+      count: 0,
+      listDone: 0,
+      listNotDone: 0,
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.onDelete = this.onDelete.bind(this);
-    this.onUpdate = this.onUpdate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.listDone = this.listDone.bind(this)
   }
 
   onDelete(id) {
@@ -32,21 +34,11 @@ class App extends Component {
     this.setState({ todoItems: todoItems });
   }
 
-  onUpdate(id) {
-    console.log("updated");
-  }
-
   handleInputValue(title, description) {
     this.setState({
       newItem: "",
       todoItems: [
         ...this.state.todoItems,
-<<<<<<< HEAD
-        { id: Date.now, title: title, description: description, isComplete: false }
-      ]
-    });
-  }
-=======
         {
           id: Date.now,
           title: title,
@@ -57,22 +49,26 @@ class App extends Component {
     });
   }
 
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
   handleUpdate(id, title, description) {
     const { todoItems } = this.state;
     let update = todoItems.find(item => item.id === id);
     update.title = title;
-<<<<<<< HEAD
-    update.description = description
-=======
     update.description = description;
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
     this.setState({
       todoItems: todoItems
     });
 
   }
-    
+  
+  listDone(todoItems) {
+    const listItemDone = todoItems.filter(item => item.isComplete === false)
+    return listItemDone.length
+  }
+
+  listNotDone(todoItems) {
+    return todoItems.length - this.listDone(todoItems)
+  }
+
   onItemClicked(item) {
     return event => {
       const isComplete = item.isComplete;
@@ -103,17 +99,15 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-<<<<<<< HEAD
-          <Link to="/Home">
-=======
+          <p className="count">{this.listDone(todoItems)}</p>
+          <p className="count">{this.listNotDone(todoItems)}</p>
           <Link to="/">
->>>>>>> 76895d557423a9c02dd1915f387026c55262e5ac
             <img src={Logo} alt="img-logo" className="img-logo"></img>
           </Link>
           <SideNav>
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="home">
-              <NavItem eventKey="home">
+              <NavItem eventKey="home"> 
                 <NavIcon>
                   <i
                     className="fa fa-fw fa-home"
