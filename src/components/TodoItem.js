@@ -25,7 +25,7 @@ class TodoItems extends Component {
     this.props.onUpdate(this.props.id, title, description);
   }
   render() {
-    const {title} = this.state;
+    const {title, description} = this.state;
     const { item, onClick } = this.props;
     let url = uncheck;
     if (item.isComplete) {
@@ -43,7 +43,7 @@ class TodoItems extends Component {
           <p>{this.props.item.title}</p>
         </div>
         <div className="button-item">
-          <EditItem handleInput={this.handleInputValue} title={title}/>
+          <EditItem handleInput={this.handleInputValue} title={title} description={description}/>
           <button onClick={() => this.props.onDelete(this.props.id)}>
             <img src={bntDetele} alt="btn-delete" className="img-bnt"></img>
           </button>

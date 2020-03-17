@@ -7,7 +7,8 @@ class ModalExample extends Component {
         super(props);
         this.state = {
             modal: false,
-            inputTitle: ''
+            inputTitle: '',
+            inputDescription: '',
         };
         this.toggle = this.toggle.bind(this);
         this.submit = this.submit.bind(this);
@@ -22,12 +23,14 @@ class ModalExample extends Component {
     }
 
     submit(){ 
-      this.props.handleInput(this.state.inputTitle);
+      this.props.handleInput(this.state.title, this.state.description);
       this.toggle();
     }
 
-    handleOnChange(event){
-      this.setState({ inputTitle: event.target.value });
+    handleOnChange(input, value) {
+      this.setState({
+        [input]: value
+      })
     }
  
     render(){
@@ -40,10 +43,10 @@ class ModalExample extends Component {
               <Modal isOpen={modal} toggle={this.toggle} >
                 <ModalHeader toggle={this.toggle}>ADD TODO</ModalHeader>
                 <ModalBody>
-                  <input name="title" ref="title" type="text" placeholder="Todo..." onChange={this.handleOnChange}></input>
+                  <input name="title" ref="title" type="text" placeholder="Todo..." onChange={e => this.handleOnChange('title', e.target.value)}></input>
                 </ModalBody>
                 <ModalBody>
-                  <input name="descript" ref="description" type="text" placeholder="Description..."onChange={this.handleOnChange}></input>
+                  <input name="description" ref="description" type="text" placeholder="Description..."onChange={e => this.handleOnChange('description', e.target.value)}></input>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.submit} >Save</Button>{' '}

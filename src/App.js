@@ -36,12 +36,12 @@ class App extends Component {
     console.log("updated");
   }
 
-  handleInputValue(val) {
+  handleInputValue(title, description) {
     this.setState({
       newItem: "",
       todoItems: [
         ...this.state.todoItems,
-        { id: Date.now, title: val, isComplete: false }
+        { id: Date.now, title: title, description: description, isComplete: false }
       ]
     });
   }
@@ -78,7 +78,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <Link to="/Home">
-            <img src={Logo} className="img-logo"></img>
+            <img src={Logo} alt="img-logo" className="img-logo"></img>
           </Link>
           <SideNav>
             <SideNav.Toggle />

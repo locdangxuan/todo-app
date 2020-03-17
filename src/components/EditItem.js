@@ -31,7 +31,7 @@ class EditItem extends Component {
   handleOnChange(input, value) {
     this.setState({
       [input]: value
-  })
+    })
   }
 
   render() {
