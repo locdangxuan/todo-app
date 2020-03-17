@@ -21,11 +21,21 @@ class App extends Component {
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.onDelete = this.onDelete.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
   onDelete(id){
     const todoItems = this.state.todoItems.filter(item => item.id !== id);
     this.setState({ todoItems: todoItems });
+  }
+
+  handleUpdate(id, val){
+    const {todoItems} = this.state
+    let update = todoItems.find((item => item.id === id));
+    update.title = val
+    this.setState({
+      todoItems: todoItems
+    });
   }
 
   handleInputValue(val) {
@@ -99,6 +109,7 @@ class App extends Component {
                   onClick={this.onItemClicked(item)}
                   todoItems={todoItems}
                   onDelete={this.onDelete}
+                  onUpdate={this.handleUpdate}
                 />
               ))}
             {todoItems.length === 0 && <div>Nothing here</div>}

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Add from "../plus.png"
-import "./AddItem.css"
-class ModalExample extends Component {
+class EditItem extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -32,19 +30,19 @@ class ModalExample extends Component {
 
     render(){
         const {modal} = this.state;
-        const {onChange} = this.props;
+        const {onChange, title} = this.props;
         return (
-            <div className="add-button">
+            <div>
               <Button color="white" onClick={this.toggle}>
-                <img alt="add-item" src={Add} className="img-add" />
+                Edit
               </Button>
               <Modal isOpen={modal} toggle={this.toggle} >
-                <ModalHeader toggle={this.toggle}>ADD TODO</ModalHeader>
+                <ModalHeader toggle={this.toggle}>EDIT TODO</ModalHeader>
                 <ModalBody>
-                  <input name="title" ref="title" type="text" placeholder="Todo..." onChange={this.handleOnChange}></input>
+                  <input name="title" ref="title"  type="text" placeholder={title} onChange={this.handleOnChange}></input>
                 </ModalBody>
                 <ModalBody>
-                  <input name="descript" ref="description" type="text" placeholder="Description..."onChange={onChange}></input>
+                  <input name="description" ref="description" type="text" placeholder="Description..." onChange={onChange}></input>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.submit} >Save</Button>{' '}
@@ -57,4 +55,4 @@ class ModalExample extends Component {
   
 }
 
-export default ModalExample;
+export default EditItem;
