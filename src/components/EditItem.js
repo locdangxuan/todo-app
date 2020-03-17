@@ -4,12 +4,11 @@ import bntEdit from "../edit.png";
 class EditItem extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       modal: false,
-      inputVal: ""
+      title: "",
+      description: ""
     };
-
     this.toggle = this.toggle.bind(this);
     this.submit = this.submit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -23,24 +22,25 @@ class EditItem extends Component {
   }
 
   submit() {
-    this.props.handleInput(this.state.inputVal);
+    this.props.handleInput(this.state.title, this.state.description);
     this.toggle();
   }
 
-  handleOnChange(event) {
-    this.setState({ inputVal: event.target.value });
+  handleOnChange(input, value) {
+    this.setState({
+      [input]: value
+    });
   }
 
   render() {
     const { modal } = this.state;
-    const { onChange, title } = this.props;
-
+    const { title, description } = this.props;
+ 
     return (
       <div>
         <Button color="white" onClick={this.toggle}>
-          <img src={bntEdit} className="img-bnt"></img>
+          <img alt="btn-edit" src={bntEdit} className="img-bnt"></img>
         </Button>
-
         <Modal isOpen={modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>EDIT TODO</ModalHeader>
           <ModalBody>
@@ -49,20 +49,18 @@ class EditItem extends Component {
               ref="title"
               type="text"
               placeholder={title}
-              onChange={this.handleOnChange}
+              onChange={e => this.handleOnChange("title", e.target.value)}
             ></input>
           </ModalBody>
-
           <ModalBody>
             <input
               name="description"
               ref="description"
               type="text"
-              placeholder="Description..."
-              onChange={this.handleOnChange}
+              placeholder={description}
+              onChange={e => this.handleOnChange("description", e.target.value)}
             ></input>
           </ModalBody>
-
           <ModalFooter>
             <Button color="primary" onClick={this.submit}>
               Save
