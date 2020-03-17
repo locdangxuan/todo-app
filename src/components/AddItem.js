@@ -7,7 +7,7 @@ class ModalExample extends Component {
         super(props);
         this.state = {
             modal: false,
-            inputVal: ''
+            inputTitle: ''
         };
         this.toggle = this.toggle.bind(this);
         this.submit = this.submit.bind(this);
@@ -22,17 +22,16 @@ class ModalExample extends Component {
     }
 
     submit(){ 
-      this.props.handleInput(this.state.inputVal);
+      this.props.handleInput(this.state.inputTitle);
       this.toggle();
     }
 
     handleOnChange(event){
-      this.setState({ inputVal: event.target.value });
+      this.setState({ inputTitle: event.target.value });
     }
 
     render(){
         const {modal} = this.state;
-        const {onChange} = this.props;
         return (
             <div className="add-button">
               <Button color="white" onClick={this.toggle}>
@@ -44,7 +43,7 @@ class ModalExample extends Component {
                   <input name="title" ref="title" type="text" placeholder="Todo..." onChange={this.handleOnChange}></input>
                 </ModalBody>
                 <ModalBody>
-                  <input name="descript" ref="description" type="text" placeholder="Description..."onChange={onChange}></input>
+                  <input name="descript" ref="description" type="text" placeholder="Description..."></input>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.submit} >Save</Button>{' '}

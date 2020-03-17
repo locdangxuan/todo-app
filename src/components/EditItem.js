@@ -30,7 +30,7 @@ class EditItem extends Component {
 
     render(){
         const {modal} = this.state;
-        const {onChange, title} = this.props;
+        const {title} = this.props;
         return (
             <div>
               <Button color="white" onClick={this.toggle}>
@@ -42,7 +42,7 @@ class EditItem extends Component {
                   <input name="title" ref="title"  type="text" placeholder={title} onChange={this.handleOnChange}></input>
                 </ModalBody>
                 <ModalBody>
-                  <input name="description" ref="description" type="text" placeholder="Description..." onChange={onChange}></input>
+                  <input name="description" ref="description" type="text" placeholder="Description..." onChange={this.handleOnChange}></input>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.submit} >Save</Button>{' '}
