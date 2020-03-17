@@ -5,8 +5,10 @@ import Home from "./components/Home";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { Link, Route, BrowserRouter as Router } from "react-router-dom";
 import TodoItem from "./components/TodoItem";
-import './App.css'
+import "./App.css";
 import AddItem from "./components/AddItem";
+import Stats from "./components/Stats";
+import Logo from "./logo.png";
 
 class App extends Component {
   constructor() {
@@ -17,29 +19,40 @@ class App extends Component {
         { id: 2, title: "Soccer", describe: "", isComplete: false },
         { id: 3, title: "Homework", describe: "", isComplete: false }
       ],
-      newItem: '',
+      newItem: ""
     };
     this.handleInputValue = this.handleInputValue.bind(this);
-    this.onDelete = this.onDelete.bind(this)
-    this.onUpdate = this.onUpdate.bind(this)
+    this.onDelete = this.onDelete.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  onDelete(id){
+  onDelete(id) {
     const todoItems = this.state.todoItems.filter(item => item.id !== id);
     this.setState({ todoItems: todoItems });
   }
 
-  onUpdate(id){
-    console.log('updated')
+  onUpdate(id) {
+    console.log("updated");
   }
 
   handleInputValue(val) {
     this.setState({
       newItem: "",
-      todoItems: [...this.state.todoItems, { id: Date.now, title: val, isComplete: false }]
+      todoItems: [
+        ...this.state.todoItems,
+        { id: Date.now, title: val, isComplete: false }
+      ]
     });
   }
-
+  handleUpdate(id, val) {
+    const { todoItems } = this.state;
+    let update = todoItems.find(item => item.id === id);
+    update.title = val;
+    this.setState({
+      todoItems: todoItems
+    });
+  }
 
   onItemClicked(item) {
     return event => {
@@ -63,10 +76,10 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <SideNav
-            onSelect={selected => {
-            }}
-          >
+          <Link to="/Home">
+            <img src={Logo} className="img-logo"></img>
+          </Link>
+          <SideNav>
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="home">
               <NavItem eventKey="home">
@@ -94,21 +107,23 @@ class App extends Component {
             </SideNav.Nav>
           </SideNav>
           <Route path="/todo">
-            <h1 className="title">TODO-APP</h1>
             {todoItems.length > 0 &&
               todoItems.map((item, index) => (
                 <TodoItem
                   key={index}
-                  id = {item.id}
+                  id={item.id}
                   item={item}
                   onClick={this.onItemClicked(item)}
                   todoItems={todoItems}
                   onDelete={this.onDelete}
-                  onUpdate={this.onUpdate}
+                  onUpdate={this.handleUpdate}
                 />
               ))}
             {todoItems.length === 0 && <div>Nothing here</div>}
-            <AddItem handleInput={this.handleInputValue} ></AddItem>
+            <AddItem handleInput={this.handleInputValue}></AddItem>
+          </Route>
+          <Route path="/statistics">
+            <Stats></Stats>
           </Route>
           <Route path="/home">
             <Home></Home>

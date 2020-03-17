@@ -33,7 +33,7 @@ class ModalExample extends Component {
     handleOnChange(event){
       this.setState({ inputVal: event.target.value });
     }
-
+ 
     render(){
         const {modal} = this.state;
         const {onChange} = this.props;
@@ -46,7 +46,7 @@ class ModalExample extends Component {
                   <input name="title" ref="title" type="text" placeholder="Todo..." onChange={this.handleOnChange}></input>
                 </ModalBody>
                 <ModalBody>
-                  <input name="descript" ref="description" type="text" placeholder="Description..."onChange={onChange}></input>
+                  <input name="descript" ref="description" type="text" placeholder="Description..."onChange={this.handleOnChange}></input>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.submit} >Save</Button>{' '}

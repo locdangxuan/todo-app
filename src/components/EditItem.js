@@ -1,39 +1,26 @@
 import React, { Component } from "react";
-
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-
-import Add from "../plus.png";
-
-import "./AddItem.css";
-
-class DetailItem extends Component {
-  //   const [modal, setModal] = useState(false);
-
-  //   const toggle = () => setModal(!modal);
-
+import bntEdit from "../edit.png";
+class EditItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       modal: false,
-
       inputVal: ""
     };
 
     this.toggle = this.toggle.bind(this);
-
     this.submit = this.submit.bind(this);
-
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   toggle() {
     const { modal } = this.state;
-
     this.setState({
       modal: !modal
     });
-  } 
+  }
 
   submit() {
     this.props.handleInput(this.state.inputVal);
@@ -46,31 +33,29 @@ class DetailItem extends Component {
 
   render() {
     const { modal } = this.state;
-
-    const { onChange } = this.props;
+    const { onChange, title } = this.props;
 
     return (
-      <div className="add-button">
+      <div>
         <Button color="white" onClick={this.toggle}>
-          <img src={Add} className="img-add"></img>
+          <img src={bntEdit} className="img-bnt"></img>
         </Button>
 
         <Modal isOpen={modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>ADD TODO</ModalHeader>
-
+          <ModalHeader toggle={this.toggle}>EDIT TODO</ModalHeader>
           <ModalBody>
             <input
               name="title"
               ref="title"
               type="text"
-              placeholder="Todo..."
+              placeholder={title}
               onChange={this.handleOnChange}
             ></input>
           </ModalBody>
 
           <ModalBody>
             <input
-              name="descript"
+              name="description"
               ref="description"
               type="text"
               placeholder="Description..."
@@ -92,4 +77,4 @@ class DetailItem extends Component {
   }
 }
 
-export default DetailItem;
+export default EditItem;

@@ -25,3 +25,8 @@
 .TodoItem > p {
     margin: 0;
 }
+.img-bnt {
+    width: 32px;
+    margin: 10px 5px;
+    display: flex;
+}

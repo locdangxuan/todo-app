@@ -3,10 +3,28 @@ import "./TodoItem.css";
 import classNames from "classnames";
 import check from "../checked.png";
 import uncheck from "../unchecked.png";
-// import EditItem from "./EditItem"
+import bntDetele from "../delete.png";
+import EditItem from "./EditItem";
+
 
 class TodoItems extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.item.title
+    };
+    this.handleInputValue = this.handleInputValue.bind(this);
+  }
+
+  handleInputValue(val) {
+    this.setState({
+      title: val
+    });
+
+    this.props.onUpdate(this.props.id, val);
+  }
   render() {
+    const {title} = this.state;
     const { item, onClick } = this.props;
     let url = uncheck;
     if (item.isComplete) {
@@ -25,8 +43,9 @@ class TodoItems extends Component {
         </div>
         <div className="button-item">
           {/* <EditItem />  */}
+          <EditItem handleInput={this.handleInputValue} title={title}/>
           <button onClick={() => this.props.onDelete(this.props.id)}>
-            Delete{" "}
+            <img src={bntDetele} className="img-bnt"></img>
           </button>
         </div>
       </div>
