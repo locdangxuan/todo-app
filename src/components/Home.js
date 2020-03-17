@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
+import "./Home.css";
+import Logo from "../logo.png";
 class Home extends Component {
     render() {
         return (
-            <div>
-                <p>this is page</p>
+            <div className="home">
+                
             </div>
         );
     }

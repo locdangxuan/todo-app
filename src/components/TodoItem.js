@@ -3,21 +3,26 @@ import "./TodoItem.css";
 import classNames from "classnames";
 import check from "../checked.png";
 import uncheck from "../unchecked.png";
-import EditItem from "./EditItem"
+import bntDetele from "../delete.png";
+import EditItem from "./EditItem";
+
 
 class TodoItems extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      title: this.props.item.title
+      title: this.props.item.title,
+      description: this.props.item.description
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
-  handleInputValue(val) {
+  handleInputValue(title, description) {
     this.setState({
-      title: val
+      title: title,
+      description: description
     });
-    this.props.onUpdate(this.props.id, val)
+
+    this.props.onUpdate(this.props.id, title, description);
   }
   render() {
     const {title} = this.state;
@@ -38,9 +43,9 @@ class TodoItems extends Component {
           <p>{this.props.item.title}</p>
         </div>
         <div className="button-item">
-          <EditItem handleInput={this.handleInputValue} title={title}/> 
+          <EditItem handleInput={this.handleInputValue} title={title}/>
           <button onClick={() => this.props.onDelete(this.props.id)}>
-            Delete{" "}
+            <img src={bntDetele} alt="btn-delete" className="img-bnt"></img>
           </button>
         </div>
       </div>
