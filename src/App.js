@@ -21,16 +21,19 @@ class App extends Component {
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.onDelete = this.onDelete.bind(this)
+    this.onUpdate = this.onUpdate.bind(this)
   }
 
-  onDelete(itemId){
-    const todoItems = this.state.todoItems.filter(item => item.id !== itemId);
-    this.setState({ todoItems: todoItems
-     });
+  onDelete(id){
+    const todoItems = this.state.todoItems.filter(item => item.id !== id);
+    this.setState({ todoItems: todoItems });
+  }
+
+  onUpdate(id){
+    console.log('updated')
   }
 
   handleInputValue(val) {
-    // this.setState({ newItem: val });
     this.setState({
       newItem: "",
       todoItems: [...this.state.todoItems, { id: Date.now, title: val, isComplete: false }]
@@ -96,11 +99,12 @@ class App extends Component {
               todoItems.map((item, index) => (
                 <TodoItem
                   key={index}
-                  id={index}
+                  id = {item.id}
                   item={item}
                   onClick={this.onItemClicked(item)}
                   todoItems={todoItems}
                   onDelete={this.onDelete}
+                  onUpdate={this.onUpdate}
                 />
               ))}
             {todoItems.length === 0 && <div>Nothing here</div>}
